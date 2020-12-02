@@ -1,7 +1,7 @@
 # VaultRaftBackup
 Backup Hashicorp Vault Raft Storage using PowerShell
 
-Vault is configured to use the integrated backup services, referred to as Raft Storage.  A Vault CLI command is available to create a snapshot of the database information, but there isn't an automated solution to perform this task.
+Vault is configured to use the integrated backup services, referred to as [Raft Storage](https://www.vaultproject.io/docs/configuration/storage/raft).  A Vault CLI command is available to create a snapshot of the database information, but there isn't an automated solution to perform this task.
 
 ## Vault Snapshot Preparation
 In order to support the automated backup procedure it is necessary to create credentials that will have read-only access to the Vault data, and can be used to perform the snapshot task into an export file.  The preparations should only be required once per Vault cluster and should remain usable unless the Periodic Service Token is allowed to expire.
@@ -30,7 +30,7 @@ Vault.exe policy write snapshotreadonly C:\Vault\SnapshotReadOnly.hcl
 ```
 
 ### Generate New Snapshot Role
-Vault provides the ability to generate a role token using the Periodic Service Token (PST), which can be used by services such as our backup process.  
+Vault provides the ability to generate a role token using the [Periodic Service Token (PST)](https://learn.hashicorp.com/tutorials/vault/tokens?in=vault/auth-methods#periodic-service-tokens), which can be used by services such as our backup process.  
 The following command is used to create a new role named **Snapshot** with a TTL of 168 hours:
 ```
 Vault.exe write auth/token/roles/snapshot allowed_policies="snapshotreadonly" period="168h"
