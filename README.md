@@ -30,7 +30,8 @@ Vault.exe policy write snapshotreadonly C:\Vault\SnapshotReadOnly.hcl
 ```
 
 ### Generate New Snapshot Role
-Vault provides the ability to generate a role token using the [Periodic Service Token (PST)](https://learn.hashicorp.com/tutorials/vault/tokens?in=vault/auth-methods#periodic-service-tokens), which can be used by services such as our backup process.  
+Vault provides the ability to generate a role token using the [Periodic Service Token (PST)](https://learn.hashicorp.com/tutorials/vault/tokens?in=vault/auth-methods#periodic-service-tokens), which can be used by services such as our backup process.
+
 The following command is used to create a new role named **Snapshot** with a TTL of 168 hours:
 ```
 Vault.exe write auth/token/roles/snapshot allowed_policies="snapshotreadonly" period="168h"
@@ -96,8 +97,8 @@ policies ["default" "snapshotreadonly"]
 
 ### Vault Backup Process
 A PowerShell backup script will be used to perform the snapshot process for backing up the Vault database.
-The following steps are performed in the backup script.
 
+The following steps are performed in the backup script.
 1. Set a temporary environment variable to hold the Vault Token
 2. Execute the Vault snapshot CLI command
 3. Renew the token
