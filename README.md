@@ -104,7 +104,7 @@ The following steps are performed in the backup script.
 3. Renew the token
 
 ### PowerShell Script
-The following PowerShell script named VaultBackup.ps1 will be used to execute the backup process:
+The following PowerShell script named **VaultBackup.ps1** will be used to execute the backup process:
 ```
 $token = 's.XXXXXXXXXXXXXXXXXXXXXXXXXXX'
 $env:VAULT_TOKEN=$token
